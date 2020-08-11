@@ -57,6 +57,9 @@ int main(void)
 
 	lfd = socket(AF_INET, SOCK_STREAM, 0);
 
+	int opt = 1;
+	setsockopt(lfd, SOL_SOCKET, SO_REUSEADDR, (void *)&opt, sizeof(opt));
+
 	memset(&servaddr, 0, sizeof(servaddr));
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_port = htons(SERV_PORT);
